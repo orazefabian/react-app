@@ -1,28 +1,21 @@
 import { useState } from "react";
 import reactLogo from "./assets/react.svg";
 import "./App.css";
-import ListGroup from "./components/ListGroup";
 import Alert from "./components/Alert";
+import SearchBar from "./components/SearchBar";
+import Weather from "./components/Weather";
 
 function App() {
-  const [count, setCount] = useState(0);
-  let items = ["New York", "Chicago", "Buffalo"];
-
-  const handleSelectItem = (item: string) => {
-    console.log(item);
+  const [city, setCity] = useState<string | null>(null);
+  const handleSearch = (city: string) => {
+    setCity(city);
   };
 
   return (
-    <div>
-      <ListGroup
-        items={items}
-        heading="Cities"
-        onSelectItem={handleSelectItem}
-      />
-      <Alert>
-        Hello <span>mighty</span> World
-      </Alert>
-    </div>
+    <>
+      <SearchBar onSearch={handleSearch} />
+      <Weather city={city} />
+    </>
   );
 }
 
