@@ -14,7 +14,6 @@ function App() {
     <>
       <SearchBar onSearch={handleSearch} />
       <Weather city={city} />
-      <Alert />
     </>
   );
 }
