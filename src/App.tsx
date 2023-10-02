@@ -11,10 +11,10 @@ function App() {
   };
 
   return (
-    <>
+    <div className="main">
       <SearchBar onSearch={handleSearch} />
       <Weather city={city} />
-    </>
+    </div>
   );
 }
 

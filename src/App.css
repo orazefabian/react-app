@@ -5,6 +5,17 @@
   text-align: center;
 }
 
+.main{
+  background-color:#a5a7c884;
+  padding: 2em;
+  border-radius:5ch
+}
+
+.search {
+  background-color: white;
+  border-radius:1ch
+}
+
 .loading-spinner{
   width: 70px;
   height: 70px;

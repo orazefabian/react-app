@@ -22,7 +22,7 @@ const SearchBar: React.FC<SearchBarProps> = ({ onSearch }) => {
   };
 
   return (
-    <div className="container-fluid mt-5">
+    <div className="container-fluid mt-4 search">
       <div className="row">
         <img
           src={search_icon}
