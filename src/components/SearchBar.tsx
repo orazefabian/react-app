@@ -1,6 +1,6 @@
 import { useState } from "react";
 import search_icon from "../assets/search.png";
-
+import "../App.css";
 interface SearchBarProps {
   onSearch: (city: string) => void;
 }
@@ -16,11 +16,11 @@ const SearchBar: React.FC<SearchBarProps> = ({ onSearch }) => {
   };
 
   return (
-    <div className="container mt-5 row justify-content-center ">
-      <div style={{ display: "flex" }}>
-        <img src={search_icon} className="img-fluid"></img>
+    <div className="logo container row mt-5 justify-content-center ">
+      <div>
+        <img src={search_icon} className="col-sm img-fluid"></img>
         <input
-          className="form-control rounded border-0 float-right"
+          className="col-sm form-control rounded border-0"
           type="text"
           placeholder="City..."
           value={query}
@@ -28,7 +28,7 @@ const SearchBar: React.FC<SearchBarProps> = ({ onSearch }) => {
         />
       </div>
       <button
-        className="input-group-append btn btn-primary rounded"
+        className="col-sm input-group-append btn btn-primary rounded"
         onClick={handleSearch}
       >
         Search
