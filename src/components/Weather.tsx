@@ -34,6 +34,8 @@ const Weather: React.FC<{ city: string | null }> = ({ city }) => {
           setWeatherIcon(snow_icon);
         } else if (text.toLowerCase().includes("thunder")) {
           setWeatherIcon(rain_icon);
+        } else if (text.toLowerCase().includes("overcast")) {
+          setWeatherIcon(cloud_icon);
         }
       })
       .catch((error) => {
