@@ -5,7 +5,7 @@ import SearchBar from "./components/SearchBar";
 import Weather from "./components/Weather";
 
 function App() {
-  const [city, setCity] = useState<string | null>(null);
+  const [city, setCity] = useState<string | null>("test");
   const handleSearch = (city: string) => {
     setCity(city);
   };

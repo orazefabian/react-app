@@ -1,6 +1,6 @@
 import { describe, expect, test } from "@jest/globals";
 import { render, fireEvent } from "@testing-library/react";
-import SearchBar from "./SearchBar";
+import SearchBar from "../components/SearchBar";
 
 test("correct placeholder texts for input field", () => {
   const { container } = render(<SearchBar onSearch={() => {}} />);
@@ -21,6 +21,20 @@ test("null city input should call onSearch with empty string", () => {
   fireEvent.click(searchButton);
 
   expect(onSearch).toHaveBeenCalledWith("");
+});
+
+test("on enter key press onSearch should be called", () => {
+  const onSearch = jest.fn();
+
+  const { getByPlaceholderText } = render(
+    <SearchBar onSearch={onSearch}></SearchBar>
+  );
+
+  const inputField = getByPlaceholderText("City...");
+  fireEvent.change(inputField, { target: { value: "Java" } });
+  fireEvent.keyUp(inputField, { key: "Enter" });
+
+  expect(onSearch).toHaveBeenCalledWith("Java");
 });
 
 test("it should call onSearch when the button is clicked", () => {
