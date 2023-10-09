@@ -8,11 +8,18 @@ import axios from "axios";
 import { fetchWeatherData } from "../api/weather";
 import Alert from "./Alert";
 import Loading from "./Loading";
+import Time from "./Time";
 
-const Weather: React.FC<{ city: string | null }> = ({ city }) => {
+interface WeatherProps {
+  city: string | null;
+  currentHours: string | null;
+}
+
+const Weather: React.FC<WeatherProps> = ({ city, currentHours }) => {
   const [loading, setLoading] = useState<boolean>(true);
   const [temperature, setTemperature] = useState<any>("");
   const [weatherIcon, setWeatherIcon] = useState<any>("");
+  const [time, setTime] = useState<string | null>("");
 
   useEffect(() => {
     setLoading(true);
@@ -20,6 +27,7 @@ const Weather: React.FC<{ city: string | null }> = ({ city }) => {
       .then((response) => {
         console.log(response.data);
         setTemperature(response.data.current.temp_c);
+        setTime(response.data.location.localtime);
         const text = response.data.current.condition.text;
         if (
           text.toLowerCase().includes("sunny") ||
@@ -53,34 +61,43 @@ const Weather: React.FC<{ city: string | null }> = ({ city }) => {
   }
 
   return (
-    <div className="container mt-5 row justify-content-center input-group">
-      <div
-        style={{
-          display: "flex",
-          alignItems: "center",
-          justifyContent: "center",
-        }}
-      >
-        {temperature ? (
-          <>
-            <img src={weatherIcon}></img>
-            <h1>
-              Temperature in {city} is {temperature} °C
-            </h1>
-          </>
-        ) : (
-          <div>
-            {city ? (
-              <>
-                <Alert>City {city} not found</Alert>
-              </>
-            ) : (
-              <h2>Input City...</h2>
-            )}
-          </div>
-        )}
+    <>
+      <div className="container mt-5 row justify-content-center input-group">
+        <div
+          style={{
+            display: "flex",
+            alignItems: "center",
+            justifyContent: "center",
+          }}
+        >
+          {temperature ? (
+            <>
+              <img src={weatherIcon}></img>
+              <h1>
+                Temperature in {city} is {temperature} °C
+              </h1>
+            </>
+          ) : (
+            <div>
+              {city ? (
+                <>
+                  <Alert>City {city} not found</Alert>
+                </>
+              ) : (
+                <h2>Input City...</h2>
+              )}
+            </div>
+          )}
+        </div>
       </div>
-    </div>
+      {city ? (
+        <>
+          <Time time={time} />
+        </>
+      ) : (
+        <></>
+      )}
+    </>
   );
 };
 

@@ -1,11 +1,10 @@
 import { useState } from "react";
-import reactLogo from "./assets/react.svg";
 import "./App.css";
 import SearchBar from "./components/SearchBar";
 import Weather from "./components/Weather";
 
-function App() {
-  const [city, setCity] = useState<string | null>("test");
+const App = () => {
+  const [city, setCity] = useState<string | null>("");
   const handleSearch = (city: string) => {
     setCity(city);
   };
@@ -13,9 +12,9 @@ function App() {
   return (
     <div className="main">
       <SearchBar onSearch={handleSearch} />
-      <Weather city={city} />
+      <Weather city={city} currentHours={null} />
     </div>
   );
-}
+};
 
 export default App;
