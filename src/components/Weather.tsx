@@ -44,12 +44,15 @@ const Weather: React.FC<WeatherProps> = ({ city, currentHours }) => {
           setWeatherIcon(rain_icon);
         } else if (text.toLowerCase().includes("overcast")) {
           setWeatherIcon(cloud_icon);
+        } else if (text.toLowerCase().includes("mist")) {
+          setWeatherIcon(cloud_icon);
         }
       })
       .catch((error) => {
         console.log("An error occurred:", error);
         setTemperature(null);
         setWeatherIcon(null);
+        setTime(null);
       })
       .finally(() => {
         setLoading(false);
@@ -90,7 +93,7 @@ const Weather: React.FC<WeatherProps> = ({ city, currentHours }) => {
           )}
         </div>
       </div>
-      {city ? (
+      {city && time ? (
         <>
           <Time time={time} />
         </>
