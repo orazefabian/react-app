@@ -4,6 +4,7 @@ import drizzle_icon from "../assets/drizzle.png";
 import cloud_icon from "../assets/cloud.png";
 import snow_icon from "../assets/snow.png";
 import rain_icon from "../assets/rain.png";
+import fog_icon from "../assets/fog.png";
 import axios from "axios";
 import { fetchWeatherData } from "../api/weather";
 import Alert from "./Alert";
@@ -46,6 +47,8 @@ const Weather: React.FC<WeatherProps> = ({ city, currentHours }) => {
           setWeatherIcon(cloud_icon);
         } else if (text.toLowerCase().includes("mist")) {
           setWeatherIcon(cloud_icon);
+        } else if (text.toLowerCase().includes("fog")) {
+          setWeatherIcon(fog_icon);
         }
       })
       .catch((error) => {
@@ -75,7 +78,10 @@ const Weather: React.FC<WeatherProps> = ({ city, currentHours }) => {
         >
           {temperature ? (
             <>
-              <img src={weatherIcon}></img>
+              <img
+                src={weatherIcon}
+                style={{ width: "15em", height: "15em" }}
+              ></img>
               <h1>
                 Temperature in {city} is {temperature} °C
               </h1>
