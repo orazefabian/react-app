@@ -30,8 +30,8 @@ const SearchBar: React.FC<SearchBarProps> = ({ onSearch }) => {
           style={{ maxHeight: "4em", maxWidth: "5em" }}
         ></img>
         <input
-          className="rounded form-control border-0 col-sm"
-          style={{ fontSize: "18pt" }}
+          className="border-0 col-sm"
+          style={{ fontSize: "18pt", outline: "none" }}
           type="text"
           placeholder="City..."
           value={query}
